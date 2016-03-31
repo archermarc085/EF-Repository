@@ -10,13 +10,17 @@ using EF_Repository.Model;
 
 namespace EF_Repository.Data
 {
-    class DBInitializer
+    class DbInitializer
     {
         public static void AddEntityGraph()
         {
-            var newPlayer = new Player() { Login = "New Player",Password = "000",Email = "plyaer@mail.ru",IsValidEmail = false,  Date = new DateTime(2010, 1, 10) };
-            newPlayer.Combat = new Combat() { CombatType = "PVE", CombatId = 1, Winner = "Bot",HitLog = new HitLog() { FirstPlayerHitValue = 60, SecondPlayerHitValue = 100, FirstPlayerName = newPlayer.Login, SecondPlayerName = "Bot" } };
-            newPlayer.Transactions.Add(new Transcation() { PlayerId = newPlayer.PlayerId, Player = newPlayer,  Sum = 20, Date = new DateTime(2010, 1, 12) });
+            var combat = new Combat() { Date = new DateTime(2012, 2, 15) };
+            var newPlayer = new Player() { Login = "archer", Password = "777", Email = "archer@gmail.com", IsValidEmail = true, Date = new DateTime(2012, 2, 10) };
+            newPlayer.Combat = combat;
+            newPlayer.Combat.Pves.Add(new Pve() { Player = newPlayer, Combat = combat });
+            var hitlog = new HitLog() { FirstPlayerHitValue = 100, SecondPlayerHitValue = 70, FirstPlayerLogin = newPlayer.Login, SecondPlayerLogin = "Bot" };
+            newPlayer.Combat.HitLog = hitlog;
+            newPlayer.Transactions.Add(new Transcation() { Player = newPlayer, Sum = 40, Date = new DateTime(2012, 2, 12) });
             using (var entity = new EfContext())
             {
                 UnitOfWork unitOfWork = new UnitOfWork(entity);
@@ -77,63 +81,30 @@ namespace EF_Repository.Data
 
         public static void AddEntityGraphs()
         {
-            var player = new Player() { PlayerId =  2 ,Login = "archer", Email = "archer@gmail.com", Password = "777", IsValidEmail = true, Date = new DateTime(2010, 2, 11)};
-            var player1 = new Player() { PlayerId = 3, Login = "mike", Email = "mike@gmail.com", Password = "qwerty", IsValidEmail = true, Date = new DateTime(2010, 2, 11) };
-           
-            player.Combat = new Combat()
-            {
-                CombatType = "PVE",
-                Date = new DateTime(2010, 2, 11),
-                CombatId = 2, Winner = player.Login ,
-                HitLog =
-                    new HitLog()
-                    {
-                        FirstPlayerHitValue = 100,
-                        SecondPlayerHitValue = 80,
-                        FirstPlayerName = player.Login,
-                        SecondPlayerName = "Bot"
-                    }
 
-            };
+            var combat = new Combat() { Date = new DateTime(2013, 1, 15) };
+            var newPlayer = new Player() { Login = "mike", Password = "000", Email = "mike@mail.ru", IsValidEmail = false, Date = new DateTime(2013, 1, 10) };
+            var newPlayer1 = new Player() { Login = "alex", Password = "111", Email = "plyaer@mail.ru", IsValidEmail = true, Date = new DateTime(2013, 1, 10) };
 
-            player1.Combat = new Combat()
-            {
-                CombatType = "PVE",
-                Date = new DateTime( 2010, 2, 11),
-                CombatId = 3,
-                Winner = player1.Login,
-                HitLog =
-                    new HitLog()
-                    {
-                        FirstPlayerHitValue = 100,
-                        SecondPlayerHitValue = 90,
-                        FirstPlayerName = player1.Login,
-                        SecondPlayerName = "Bot"
-                    }
-
-            };
+            combat.Pvps.Add(new Pvp() { First = newPlayer, Second = newPlayer1 });
 
 
-            player.Transactions.Add(new Transcation()
-            {
-                PlayerId = player.PlayerId,
-                Player = player,
-                Sum = 30,
-                Date = new DateTime(2010, 1, 12)
-            });
 
-            player1.Transactions.Add(new Transcation()
-            {
-                PlayerId = player.PlayerId,
-                Player = player1,
-                Sum = 20,
-                Date = new DateTime(2010, 1, 12)
-            });
+            var hitlog = new HitLog() { FirstPlayerHitValue = 60, SecondPlayerHitValue = 100, FirstPlayerLogin = newPlayer.Login, SecondPlayerLogin = newPlayer1.Login };
+            combat.HitLog = hitlog;
+            newPlayer.Transactions.Add(new Transcation() { Sum = 20, Date = new DateTime(2010, 1, 12) });
+            newPlayer1.Transactions.Add(new Transcation() { Sum = 30, Date = new DateTime(2010, 1, 12) });
+
+            combat.Winner = newPlayer1.Login;
+
+            newPlayer.Combat = combat;
+            newPlayer1.Combat = combat;
+
             using (var entity = new EfContext())
             {
                 UnitOfWork unitOfWork = new UnitOfWork(entity);
-                unitOfWork.PlayersRepo.Add(player);
-                unitOfWork.PlayersRepo.Add(player1);
+                unitOfWork.PlayersRepo.Add(newPlayer);
+                unitOfWork.PlayersRepo.Add(newPlayer1);
                 entity.SaveChanges();
             }
         }

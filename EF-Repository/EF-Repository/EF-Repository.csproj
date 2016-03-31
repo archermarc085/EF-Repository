@@ -59,6 +59,8 @@
     <Compile Include="Model\Combat.cs" />
     <Compile Include="Model\HitLog.cs" />
     <Compile Include="Model\Player.cs" />
+    <Compile Include="Model\Pve.cs" />
+    <Compile Include="Model\Pvp.cs" />
     <Compile Include="Model\Transcation.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

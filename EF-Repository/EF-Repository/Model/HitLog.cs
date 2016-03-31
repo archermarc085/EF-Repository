@@ -11,8 +11,8 @@ namespace EF_Repository.Model
     {
         [Key]
         public int CombatId { get; set; }
-        public string FirstPlayerName { get; set; }
-        public string SecondPlayerName { get; set; }
+        public string FirstPlayerLogin { get; set; }
+        public string SecondPlayerLogin { get; set; }
         public int FirstPlayerHitValue { get; set; }
         public int SecondPlayerHitValue { get; set; }
         [Required]

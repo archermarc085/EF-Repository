@@ -11,7 +11,7 @@ namespace EF_Repository.Data
     class EfContext:DbContext
     {
         public EfContext()
-            : base("FCDb")
+            : base("CombatDb")
         {
             
         }
