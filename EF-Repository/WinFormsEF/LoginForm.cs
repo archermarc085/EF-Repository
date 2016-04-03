@@ -14,6 +14,8 @@ namespace WinFormsEF
 {
     public partial class LoginForm : Form
     {
+        private int _attempts = 0;
+        private const int MaxLoginAttempts = 3;
         public LoginForm()
         {
             InitializeComponent();
@@ -21,29 +23,43 @@ namespace WinFormsEF
 
         private void button1_Click(object sender, EventArgs e)
         {
+            bool check = false;
+            _attempts++;
             if (radioButton1.Checked)
             {
                 var myCheckingValidateUser = CheckingValidateUser();
                 if (myCheckingValidateUser != null)
                 {
+                    check = true;
                     MessageBox.Show("Ok!", "Message");
                     this.Hide();
                     DataForm form = new DataForm() { MdiParent = this.MdiParent as ContainerForm };
                     form.Show();
                     this.Close();
                 }
-                else
-                {
-                    MessageBox.Show("Failed!");
-                }
+
             }
             if (radioButton2.Checked)
             {
+                check = true;
                 MessageBox.Show("Welcome Guest!");
                 this.Hide();
                 CombatsForm form = new CombatsForm() { MdiParent = this.MdiParent as ContainerForm };
                 form.Show();
                 this.Close();
+            }
+            if (!check)
+            {
+
+                if (_attempts == MaxLoginAttempts)
+                {
+                    MessageBox.Show("Invalid login. You have reached the maximum number of invalid login attempts.", string.Format("Invalid Login (attempt {0} of {1})", _attempts, MaxLoginAttempts));
+                    Application.Exit();
+                }
+                else
+                {
+                    MessageBox.Show("Invalid login. Try again.", string.Format("Invalid Login (attempt {0} of {1})", _attempts, MaxLoginAttempts));
+                }
             }
         }
 

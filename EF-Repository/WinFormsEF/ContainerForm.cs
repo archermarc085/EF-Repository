@@ -40,5 +40,22 @@ namespace WinFormsEF
                 item.Close();
             }
         }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void createToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            RegisterForm registerForm = new RegisterForm(){MdiParent = this};
+            registerForm.Show();
+        }
+
+        private void ratingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            RatingForm ratingForm = new RatingForm(){MdiParent =  this};
+            ratingForm.Show();
+        }
     }
 }

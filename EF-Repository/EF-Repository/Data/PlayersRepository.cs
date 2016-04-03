@@ -25,7 +25,10 @@ namespace EF_Repository.Data
         {
             _entity.Players.Remove(entity);
         }
-
+        public Player[] GetPlayers()
+        {
+            return _entity.Players.ToArray();
+        }
         public void SaveChanges()
         {
             _entity.SaveChanges();

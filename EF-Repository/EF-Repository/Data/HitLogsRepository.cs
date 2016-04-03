@@ -25,7 +25,10 @@ namespace EF_Repository.Data
         {
             _entity.HitLogs.Remove(entity);
         }
-
+        public HitLog[] GetHitLogs()
+        {
+            return _entity.HitLogs.ToArray();
+        }
         public void SaveChanges()
         {
             _entity.SaveChanges();

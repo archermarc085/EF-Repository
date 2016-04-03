@@ -25,7 +25,10 @@ namespace EF_Repository.Data
         {
             _entity.Combats.Remove(entity);
         }
-
+        public Combat[] GetCombats()
+        {
+            return _entity.Combats.ToArray();
+        }
         public void SaveChanges()
         {
             _entity.SaveChanges();

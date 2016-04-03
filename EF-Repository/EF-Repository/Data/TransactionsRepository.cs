@@ -25,7 +25,10 @@ namespace EF_Repository.Data
         {
             _entity.Transactions.Remove(entity);
         }
-
+        public Transcation[] GetTranscations()
+        {
+            return _entity.Transactions.ToArray();
+        }
         public void SaveChanges()
         {
             _entity.SaveChanges();
