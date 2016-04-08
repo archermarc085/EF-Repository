@@ -11,8 +11,8 @@ namespace EF_Repository
     {
         static void Main(string[] args)
         {
-            DbInitializer.AddEntityGraph();
-            DbInitializer.AddEntityGraphs();
+           // DbInitializer.AddEntityGraph();
+           // DbInitializer.AddEntityGraphs();
             Console.WriteLine("OK!");
             Console.ReadLine();
         }

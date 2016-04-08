@@ -54,6 +54,7 @@ namespace WinFormsEF
 
         private void ratingToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            MessageBox.Show("Rating!");
             RatingForm ratingForm = new RatingForm(){MdiParent =  this};
             ratingForm.Show();
         }

@@ -32,11 +32,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework">
-      <HintPath>..\..\..\..\Desktop\Новая папка (6)\packages\EntityFramework.6.0.2\lib\net45\EntityFramework.dll</HintPath>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer">
-      <HintPath>..\..\..\..\Desktop\Новая папка (6)\packages\EntityFramework.6.0.2\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Build.Framework" />
     <Reference Include="System" />
@@ -49,13 +51,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Data\CombatsRepository.cs" />
+    <Compile Include="Data\Interfaces\IUnitOfWork.cs" />
+    <Compile Include="Model\Interfaces\IPlayer.cs" />
+    <Compile Include="Repository\CombatsRepository.cs" />
     <Compile Include="Data\DBInitializer.cs" />
     <Compile Include="Data\EfContext.cs" />
-    <Compile Include="Data\HitLogsRepository.cs" />
-    <Compile Include="Data\PlayersRepository.cs" />
-    <Compile Include="Data\TransactionsRepository.cs" />
+    <Compile Include="Repository\HitLogsRepository.cs" />
+    <Compile Include="Repository\Interfaces\ICombatsRepository.cs" />
+    <Compile Include="Repository\Interfaces\IHitLogsRepository.cs" />
+    <Compile Include="Repository\Interfaces\IPlayersRepository.cs" />
+    <Compile Include="Repository\Interfaces\IPvesRepository.cs" />
+    <Compile Include="Repository\Interfaces\ITransactionsRepository.cs" />
+    <Compile Include="Repository\Interfaces\IPvpsRepository.cs" />
+    <Compile Include="Repository\PlayersRepository.cs" />
+    <Compile Include="Repository\PvesRepository.cs" />
+    <Compile Include="Repository\PvpsRepository.cs" />
+    <Compile Include="Repository\TransactionsRepository.cs" />
     <Compile Include="Data\UnitOfWork.cs" />
+    <Compile Include="Migrations\201604080647353_Initial.cs" />
+    <Compile Include="Migrations\201604080647353_Initial.Designer.cs">
+      <DependentUpon>201604080647353_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\Combat.cs" />
     <Compile Include="Model\HitLog.cs" />
     <Compile Include="Model\Player.cs" />
@@ -67,8 +84,13 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201604080647353_Initial.resx">
+      <DependentUpon>201604080647353_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

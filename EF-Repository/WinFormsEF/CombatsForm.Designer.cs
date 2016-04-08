@@ -84,13 +84,14 @@
             this.gridView1.GridControl = this.combatsGridControl;
             this.gridView1.Name = "gridView1";
             // 
-            // PlayerForm
+            // CombatsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(600, 315);
             this.Controls.Add(this.combatsGridControl);
-            this.Name = "PlayerForm";
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Name = "CombatsForm";
             this.Text = "Combats";
             this.Load += new System.EventHandler(this.PlayerForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.combatDbDataSet)).EndInit();

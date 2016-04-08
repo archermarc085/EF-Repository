@@ -1,18 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Validation;
 using System.Diagnostics;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using EF_Repository.Model;
 
 namespace EF_Repository.Data
 {
-    class DbInitializer
+    class DbInitializer : DropCreateDatabaseIfModelChanges<EfContext>
     {
-        public static void AddEntityGraph()
+        public  void AddEntityGraph()
         {
             var combat = new Combat() { Date = new DateTime(2012, 2, 15) };
             var newPlayer = new Player() { Login = "archer", Password = "777", Email = "archer@gmail.com", IsValidEmail = true, Date = new DateTime(2012, 2, 10) };
@@ -59,7 +61,7 @@ namespace EF_Repository.Data
             }
 
         }
-        private static Exception HandleDbUpdateException(DbUpdateException dbu)
+        private  Exception HandleDbUpdateException(DbUpdateException dbu)
         {
             var builder = new StringBuilder("A DbUpdateException was caught while saving changes. ");
 
@@ -79,8 +81,9 @@ namespace EF_Repository.Data
             return new Exception(message, dbu);
         }
 
-        public static void AddEntityGraphs()
+        public  IList<Player> AddEntityGraphs()
         {
+            IList<Player> players = new List<Player>();
 
             var combat = new Combat() { Date = new DateTime(2013, 1, 15) };
             var newPlayer = new Player() { Login = "mike", Password = "000", Email = "mike@mail.ru", IsValidEmail = false, Date = new DateTime(2013, 1, 10) };
@@ -99,14 +102,19 @@ namespace EF_Repository.Data
 
             newPlayer.Combat = combat;
             newPlayer1.Combat = combat;
+            players.Add(newPlayer);
+            players.Add(newPlayer1);
+            return players;
+        }
 
-            using (var entity = new EfContext())
+        protected override void Seed(EfContext context)
+        {
+            IList<Player> list = AddEntityGraphs();
+            foreach (var player in list)
             {
-                UnitOfWork unitOfWork = new UnitOfWork(entity);
-                unitOfWork.PlayersRepo.Add(newPlayer);
-                unitOfWork.PlayersRepo.Add(newPlayer1);
-                entity.SaveChanges();
+                context.Players.Add(player);
             }
+            base.Seed(context);
         }
     }
 }

@@ -4,11 +4,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using EF_Repository.Model.Interfaces;
 using Microsoft.Build.Framework;
 
 namespace EF_Repository.Model
 {
-    class Player
+     class Player:IPlayer
     {
         public Player()
         {

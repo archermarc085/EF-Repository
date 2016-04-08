@@ -8,58 +8,62 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using EF_Repository.Data;
+using EF_Repository.Model;
+using WinFormsEF.Classes;
+using WinFormsEF.Classes.Interfaces;
 
 namespace WinFormsEF
 {
     public partial class RatingForm : Form
     {
+        private readonly IService _service = new Service();
         public RatingForm()
         {
             InitializeComponent();
         }
-
-        private void button1_Click(object sender, EventArgs e)
+        private void RatingForm_Load(object sender, EventArgs e)
         {
-            var context = new EfContext();
-            var unitofWorks = new UnitOfWork(context);
-
-            if (checkBox1.Checked)
-            {
-                var usersWithValidEmail = (from u in unitofWorks.PlayersRepo.GetPlayers()
-                                           where u.IsValidEmail == true
-                                           select new { u.PlayerId, u.Login, u.Email, u.Date }).ToArray();
-                dataGridView1.DataSource = usersWithValidEmail;
-            }
-            if(checkBox2.Checked)
-            {
-                var transactions = (from p in unitofWorks.TransactionsRepo.GetTranscations()
-                                   orderby p.Sum descending
-                                   select new { p.TransactId, p.PlayerId, p.Sum, p.Date }).
-                Take(3).ToArray();
-                dataGridView1.DataSource = transactions;
-            }
-            if (checkBox3.Checked)
-            {
-                var longestPassword = (from p in context.Players
-                                       orderby p.Password descending
-                                       select new { p.PlayerId, p.Login }).
-                ToArray();
-                dataGridView1.DataSource = longestPassword;
-            }
-            context.Dispose();
-            UncheckingCheckBox();
+            // TODO: This line of code loads data into the 'combatDbDataSet.HitLogs' table. You can move, or remove it, as needed.
+            this.hitLogsTableAdapter.Fill(this.combatDbDataSet.HitLogs);
+            playersValidEmailRdBtn.Checked = true;
         }
-
-
-        private void UncheckingCheckBox()
+        private void playersValidEmailRdBtn_CheckedChanged(object sender, EventArgs e)
         {
-            checkBox1.Checked = false;
-            checkBox2.Checked = false;
-            checkBox3.Checked = false;
+            dataPlayersGridView.DataSource = _service.PlayersWithValidEmails();
         }
-        private void button2_Click(object sender, EventArgs e)
+        private void playersTopLongPasswdRdBtn_CheckedChanged(object sender, EventArgs e)
         {
-            this.Close();
+            dataPlayersGridView.DataSource = _service.TopPlayersByLongestPassword();   
+        }
+        private void transactionsTopSumRdBtn_CheckedChanged(object sender, EventArgs e)
+        {
+            dataTransactionsGridView.DataSource = _service.TopTransactionsBySum();            
+        }
+        private void playersOrderDateRdBtn_CheckedChanged(object sender, EventArgs e)
+        {
+            dataPlayersGridView.DataSource = _service.PlayersOrderByDate();
+        }
+        private void transactionsOrderDateRdBtn_CheckedChanged(object sender, EventArgs e)
+        {
+            dataTransactionsGridView.DataSource = _service.TransactionsOrderByDate();
+        }
+        private void winnersRdBtn_CheckedChanged(object sender, EventArgs e)
+        {
+            dataCombatsGridView.DataSource = _service.Winners();            
+        }
+        private void pvesRdbtn_CheckedChanged(object sender, EventArgs e)
+        {
+            dataCombatsGridView.DataSource = _service.Pves(); 
+        }
+        private void pvpsRdbtn_CheckedChanged(object sender, EventArgs e)
+        {
+            dataCombatsGridView.DataSource = _service.Pvps();
+        }
+        private void hitLogsBindingNavigatorSaveItem_Click(object sender, EventArgs e)
+        {
+            this.Validate();
+            this.hitLogsBindingSource.EndEdit();
+            this.tableAdapterManager.UpdateAll(this.combatDbDataSet);
         }
     }
 }

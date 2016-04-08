@@ -9,11 +9,14 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using EF_Repository.Data;
 using EF_Repository.Model;
+using WinFormsEF.Classes;
+using WinFormsEF.Classes.Interfaces;
 
 namespace WinFormsEF
 {
     public partial class LoginForm : Form
     {
+        private IService _service;
         private int _attempts = 0;
         private const int MaxLoginAttempts = 3;
         public LoginForm()
@@ -24,10 +27,11 @@ namespace WinFormsEF
         private void button1_Click(object sender, EventArgs e)
         {
             bool check = false;
+            _service = new Service();
             _attempts++;
             if (radioButton1.Checked)
             {
-                var myCheckingValidateUser = CheckingValidateUser();
+                var myCheckingValidateUser = _service.CheckingValidateUser(textBox1.Text, textBox2.Text);
                 if (myCheckingValidateUser != null)
                 {
                     check = true;
@@ -62,17 +66,6 @@ namespace WinFormsEF
                 }
             }
         }
-
-        private Player CheckingValidateUser()
-        {
-            var context = new EfContext();
-            var myCheckingValidateUser = (from p in context.Players
-                where p.Login == textBox1.Text && p.Password == textBox2.Text
-                select p).FirstOrDefault();
-            context.Dispose();
-            return myCheckingValidateUser;
-        }
-
         private void textBox2_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == (char)Keys.Enter)

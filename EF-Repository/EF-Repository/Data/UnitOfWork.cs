@@ -1,77 +1,67 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using EF_Repository.Data.Interfaces;
+using EF_Repository.Repository;
+using EF_Repository.Repository.Interfaces;
 
 namespace EF_Repository.Data
 {
-    class UnitOfWork
+    class UnitOfWork:IUnitOfWork
     {
-        PlayersRepository _playersRepo;
-        CombatsRepository _combatsRepo;
-        TransactionsRepository _transactionsRepo;
-        HitLogsRepository _hitLogsRepo;
-        private EfContext _entity;
+        private IPlayersRepository _playersRepo;
+        private ICombatsRepository _combatsRepo;
+        private ITransactionsRepository _transactionsRepo;
+        private IHitLogsRepository _hitLogsRepo;
+        private IPvesRepository _pvesRepo;
+        private IPvpsRepository _pvpsRepo;
 
+        private readonly EfContext _entity;
+
+        public UnitOfWork()
+        {
+            _entity = new EfContext();
+        }
         public UnitOfWork(EfContext context)
         {
             _entity = context;
         }
-
-
-        public PlayersRepository PlayersRepo
+        public IPlayersRepository PlayersRepo
         {
-            get
-            {
-                if (_playersRepo == null)
-                {
-                    _playersRepo = new PlayersRepository(_entity);
-                }
-                return _playersRepo;
-            }
+            get { return (_playersRepo ?? (_playersRepo = new PlayersRepository(_entity))); }
         }
-
-        public CombatsRepository CombatsRepo
+        public ICombatsRepository CombatsRepo
         {
-            get
-            {
-                if (_combatsRepo == null)
-                {
-                    _combatsRepo = new CombatsRepository(_entity);
-                }
-                return _combatsRepo;
-            }
+            get { return (_combatsRepo ?? (_combatsRepo = new CombatsRepository(_entity))); }
         }
-
-        public TransactionsRepository TransactionsRepo
+        public IPvesRepository PvesRepo
         {
-            get
-            {
-                if (_transactionsRepo == null)
-                {
-                    _transactionsRepo = new TransactionsRepository(_entity);
-                }
-                return _transactionsRepo;
-            }
+            get { return (_pvesRepo ?? (_pvesRepo = new PvesRepository(_entity))); }
         }
-
-        public HitLogsRepository HitLogsRepo
+        public IPvpsRepository PvpsRepo
         {
-            get
-            {
-                if (_hitLogsRepo == null)
-                {
-                    _hitLogsRepo = new HitLogsRepository(_entity);
-                }
-                return _hitLogsRepo;
-            }
+            get { return (_pvpsRepo ?? (_pvpsRepo = new PvpsRepository(_entity))); }
         }
-
-
+        public ITransactionsRepository TransactionsRepo
+        {
+            get { return (_transactionsRepo ?? (_transactionsRepo = new TransactionsRepository(_entity))); }
+        }
+        public IHitLogsRepository HitLogsRepo
+        {
+            get { return (_hitLogsRepo ?? (_hitLogsRepo = new HitLogsRepository(_entity))); }
+        }
         public void Save()
         {
             _entity.SaveChanges();
+        }
+
+        public void Dispose()
+        {
+           _entity.Dispose();
         }
     }
 }

@@ -34,33 +34,33 @@
             this.playersBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.playersTableAdapter = new WinFormsEF.CombatDbDataSetTableAdapters.PlayersTableAdapter();
             this.tableAdapterManager = new WinFormsEF.CombatDbDataSetTableAdapters.TableAdapterManager();
+            this.combatsTableAdapter = new WinFormsEF.CombatDbDataSetTableAdapters.CombatsTableAdapter();
+            this.hitLogsTableAdapter = new WinFormsEF.CombatDbDataSetTableAdapters.HitLogsTableAdapter();
+            this.pvesTableAdapter = new WinFormsEF.CombatDbDataSetTableAdapters.PvesTableAdapter();
+            this.pvpsTableAdapter = new WinFormsEF.CombatDbDataSetTableAdapters.PvpsTableAdapter();
+            this.transcationsTableAdapter = new WinFormsEF.CombatDbDataSetTableAdapters.TranscationsTableAdapter();
             this.playersBindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
+            this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
+            this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
+            this.bindingNavigatorDeleteItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMovePreviousItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator = new System.Windows.Forms.ToolStripSeparator();
             this.bindingNavigatorPositionItem = new System.Windows.Forms.ToolStripTextBox();
-            this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
             this.bindingNavigatorSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.bindingNavigatorMoveNextItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorDeleteItem = new System.Windows.Forms.ToolStripButton();
             this.playersBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
             this.playersGridControl = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.combatsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.combatsTableAdapter = new WinFormsEF.CombatDbDataSetTableAdapters.CombatsTableAdapter();
             this.combatsGridControl = new DevExpress.XtraGrid.GridControl();
             this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.hitLogsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.hitLogsTableAdapter = new WinFormsEF.CombatDbDataSetTableAdapters.HitLogsTableAdapter();
             this.transcationsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.transcationsTableAdapter = new WinFormsEF.CombatDbDataSetTableAdapters.TranscationsTableAdapter();
             this.pvesBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.pvesTableAdapter = new WinFormsEF.CombatDbDataSetTableAdapters.PvesTableAdapter();
             this.pvpsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.pvpsTableAdapter = new WinFormsEF.CombatDbDataSetTableAdapters.PvpsTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.combatDbDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.playersBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.playersBindingNavigator)).BeginInit();
@@ -102,6 +102,26 @@
             this.tableAdapterManager.TranscationsTableAdapter = this.transcationsTableAdapter;
             this.tableAdapterManager.UpdateOrder = WinFormsEF.CombatDbDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             // 
+            // combatsTableAdapter
+            // 
+            this.combatsTableAdapter.ClearBeforeFill = true;
+            // 
+            // hitLogsTableAdapter
+            // 
+            this.hitLogsTableAdapter.ClearBeforeFill = true;
+            // 
+            // pvesTableAdapter
+            // 
+            this.pvesTableAdapter.ClearBeforeFill = true;
+            // 
+            // pvpsTableAdapter
+            // 
+            this.pvpsTableAdapter.ClearBeforeFill = true;
+            // 
+            // transcationsTableAdapter
+            // 
+            this.transcationsTableAdapter.ClearBeforeFill = true;
+            // 
             // playersBindingNavigator
             // 
             this.playersBindingNavigator.AddNewItem = this.bindingNavigatorAddNewItem;
@@ -131,6 +151,31 @@
             this.playersBindingNavigator.Size = new System.Drawing.Size(736, 25);
             this.playersBindingNavigator.TabIndex = 0;
             this.playersBindingNavigator.Text = "bindingNavigator1";
+            // 
+            // bindingNavigatorAddNewItem
+            // 
+            this.bindingNavigatorAddNewItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorAddNewItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorAddNewItem.Image")));
+            this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
+            this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
+            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(23, 22);
+            this.bindingNavigatorAddNewItem.Text = "Add new";
+            // 
+            // bindingNavigatorCountItem
+            // 
+            this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
+            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(36, 22);
+            this.bindingNavigatorCountItem.Text = "of {0}";
+            this.bindingNavigatorCountItem.ToolTipText = "Total number of items";
+            // 
+            // bindingNavigatorDeleteItem
+            // 
+            this.bindingNavigatorDeleteItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorDeleteItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorDeleteItem.Image")));
+            this.bindingNavigatorDeleteItem.Name = "bindingNavigatorDeleteItem";
+            this.bindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = true;
+            this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(23, 22);
+            this.bindingNavigatorDeleteItem.Text = "Delete";
             // 
             // bindingNavigatorMoveFirstItem
             // 
@@ -164,17 +209,10 @@
             this.bindingNavigatorPositionItem.Text = "0";
             this.bindingNavigatorPositionItem.ToolTipText = "Current position";
             // 
-            // bindingNavigatorCountItem
-            // 
-            this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
-            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(36, 13);
-            this.bindingNavigatorCountItem.Text = "of {0}";
-            this.bindingNavigatorCountItem.ToolTipText = "Total number of items";
-            // 
             // bindingNavigatorSeparator1
             // 
-            this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator";
-            this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 6);
+            this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator1";
+            this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
             // bindingNavigatorMoveNextItem
             // 
@@ -182,7 +220,7 @@
             this.bindingNavigatorMoveNextItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveNextItem.Image")));
             this.bindingNavigatorMoveNextItem.Name = "bindingNavigatorMoveNextItem";
             this.bindingNavigatorMoveNextItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveNextItem.Size = new System.Drawing.Size(23, 20);
+            this.bindingNavigatorMoveNextItem.Size = new System.Drawing.Size(23, 22);
             this.bindingNavigatorMoveNextItem.Text = "Move next";
             // 
             // bindingNavigatorMoveLastItem
@@ -191,38 +229,20 @@
             this.bindingNavigatorMoveLastItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveLastItem.Image")));
             this.bindingNavigatorMoveLastItem.Name = "bindingNavigatorMoveLastItem";
             this.bindingNavigatorMoveLastItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveLastItem.Size = new System.Drawing.Size(23, 20);
+            this.bindingNavigatorMoveLastItem.Size = new System.Drawing.Size(23, 22);
             this.bindingNavigatorMoveLastItem.Text = "Move last";
             // 
             // bindingNavigatorSeparator2
             // 
-            this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator";
-            this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 6);
-            // 
-            // bindingNavigatorAddNewItem
-            // 
-            this.bindingNavigatorAddNewItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorAddNewItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorAddNewItem.Image")));
-            this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
-            this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(23, 22);
-            this.bindingNavigatorAddNewItem.Text = "Add new";
-            // 
-            // bindingNavigatorDeleteItem
-            // 
-            this.bindingNavigatorDeleteItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorDeleteItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorDeleteItem.Image")));
-            this.bindingNavigatorDeleteItem.Name = "bindingNavigatorDeleteItem";
-            this.bindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(23, 20);
-            this.bindingNavigatorDeleteItem.Text = "Delete";
+            this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
+            this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 25);
             // 
             // playersBindingNavigatorSaveItem
             // 
             this.playersBindingNavigatorSaveItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.playersBindingNavigatorSaveItem.Image = ((System.Drawing.Image)(resources.GetObject("playersBindingNavigatorSaveItem.Image")));
             this.playersBindingNavigatorSaveItem.Name = "playersBindingNavigatorSaveItem";
-            this.playersBindingNavigatorSaveItem.Size = new System.Drawing.Size(23, 23);
+            this.playersBindingNavigatorSaveItem.Size = new System.Drawing.Size(23, 22);
             this.playersBindingNavigatorSaveItem.Text = "Save Data";
             this.playersBindingNavigatorSaveItem.Click += new System.EventHandler(this.playersBindingNavigatorSaveItem_Click);
             // 
@@ -247,10 +267,6 @@
             this.combatsBindingSource.DataMember = "Combats";
             this.combatsBindingSource.DataSource = this.combatDbDataSet;
             // 
-            // combatsTableAdapter
-            // 
-            this.combatsTableAdapter.ClearBeforeFill = true;
-            // 
             // combatsGridControl
             // 
             this.combatsGridControl.DataSource = this.combatsBindingSource;
@@ -272,36 +288,20 @@
             this.hitLogsBindingSource.DataMember = "HitLogs";
             this.hitLogsBindingSource.DataSource = this.combatDbDataSet;
             // 
-            // hitLogsTableAdapter
-            // 
-            this.hitLogsTableAdapter.ClearBeforeFill = true;
-            // 
             // transcationsBindingSource
             // 
             this.transcationsBindingSource.DataMember = "Transcations";
             this.transcationsBindingSource.DataSource = this.combatDbDataSet;
-            // 
-            // transcationsTableAdapter
-            // 
-            this.transcationsTableAdapter.ClearBeforeFill = true;
             // 
             // pvesBindingSource
             // 
             this.pvesBindingSource.DataMember = "Pves";
             this.pvesBindingSource.DataSource = this.combatDbDataSet;
             // 
-            // pvesTableAdapter
-            // 
-            this.pvesTableAdapter.ClearBeforeFill = true;
-            // 
             // pvpsBindingSource
             // 
             this.pvpsBindingSource.DataMember = "Pvps";
             this.pvpsBindingSource.DataSource = this.combatDbDataSet;
-            // 
-            // pvpsTableAdapter
-            // 
-            this.pvpsTableAdapter.ClearBeforeFill = true;
             // 
             // DataForm
             // 
@@ -311,6 +311,7 @@
             this.Controls.Add(this.combatsGridControl);
             this.Controls.Add(this.playersGridControl);
             this.Controls.Add(this.playersBindingNavigator);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "DataForm";
             this.Text = "DataForm";
             this.Load += new System.EventHandler(this.DataForm_Load);
