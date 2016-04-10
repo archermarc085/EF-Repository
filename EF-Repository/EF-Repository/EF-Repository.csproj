@@ -53,6 +53,11 @@
   <ItemGroup>
     <Compile Include="Data\Interfaces\IUnitOfWork.cs" />
     <Compile Include="Model\Interfaces\IPlayer.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
     <Compile Include="Repository\CombatsRepository.cs" />
     <Compile Include="Data\DBInitializer.cs" />
     <Compile Include="Data\EfContext.cs" />
@@ -85,6 +90,10 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201604080647353_Initial.resx">
