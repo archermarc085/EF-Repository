@@ -1,4 +1,4 @@
-﻿namespace WinFormsNoDevExp
+﻿namespace EfWinform
 {
     partial class RatingForm
     {
@@ -47,6 +47,8 @@
             this.transactionsTopSumRdBtn = new System.Windows.Forms.RadioButton();
             this.dataTransactionsGridView = new System.Windows.Forms.DataGridView();
             this.HitLogPage = new System.Windows.Forms.TabPage();
+            this.dataHitLogsGridView = new System.Windows.Forms.DataGridView();
+            this.showBtn = new System.Windows.Forms.Button();
             this.CombatControl.SuspendLayout();
             this.PlayersPage.SuspendLayout();
             this.playersPanel.SuspendLayout();
@@ -57,6 +59,8 @@
             this.TransactionsPage.SuspendLayout();
             this.TransactionsPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataTransactionsGridView)).BeginInit();
+            this.HitLogPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataHitLogsGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // CombatControl
@@ -65,11 +69,11 @@
             this.CombatControl.Controls.Add(this.CombatsPage);
             this.CombatControl.Controls.Add(this.TransactionsPage);
             this.CombatControl.Controls.Add(this.HitLogPage);
-            this.CombatControl.Location = new System.Drawing.Point(12, 12);
+            this.CombatControl.Location = new System.Drawing.Point(10, 12);
             this.CombatControl.Name = "CombatControl";
             this.CombatControl.SelectedIndex = 0;
-            this.CombatControl.Size = new System.Drawing.Size(783, 344);
-            this.CombatControl.TabIndex = 17;
+            this.CombatControl.Size = new System.Drawing.Size(783, 328);
+            this.CombatControl.TabIndex = 18;
             // 
             // PlayersPage
             // 
@@ -78,7 +82,7 @@
             this.PlayersPage.Location = new System.Drawing.Point(4, 22);
             this.PlayersPage.Name = "PlayersPage";
             this.PlayersPage.Padding = new System.Windows.Forms.Padding(3);
-            this.PlayersPage.Size = new System.Drawing.Size(775, 318);
+            this.PlayersPage.Size = new System.Drawing.Size(775, 302);
             this.PlayersPage.TabIndex = 0;
             this.PlayersPage.Text = "Players";
             this.PlayersPage.UseVisualStyleBackColor = true;
@@ -144,7 +148,7 @@
             this.CombatsPage.Location = new System.Drawing.Point(4, 22);
             this.CombatsPage.Name = "CombatsPage";
             this.CombatsPage.Padding = new System.Windows.Forms.Padding(3);
-            this.CombatsPage.Size = new System.Drawing.Size(775, 318);
+            this.CombatsPage.Size = new System.Drawing.Size(775, 302);
             this.CombatsPage.TabIndex = 1;
             this.CombatsPage.Text = "Combats";
             this.CombatsPage.UseVisualStyleBackColor = true;
@@ -210,7 +214,7 @@
             this.TransactionsPage.Location = new System.Drawing.Point(4, 22);
             this.TransactionsPage.Name = "TransactionsPage";
             this.TransactionsPage.Padding = new System.Windows.Forms.Padding(3);
-            this.TransactionsPage.Size = new System.Drawing.Size(775, 318);
+            this.TransactionsPage.Size = new System.Drawing.Size(775, 302);
             this.TransactionsPage.TabIndex = 2;
             this.TransactionsPage.Text = "Transactions";
             this.TransactionsPage.UseVisualStyleBackColor = true;
@@ -259,20 +263,39 @@
             // HitLogPage
             // 
             this.HitLogPage.AutoScroll = true;
+            this.HitLogPage.Controls.Add(this.showBtn);
+            this.HitLogPage.Controls.Add(this.dataHitLogsGridView);
             this.HitLogPage.Location = new System.Drawing.Point(4, 22);
             this.HitLogPage.Name = "HitLogPage";
-            this.HitLogPage.Size = new System.Drawing.Size(775, 318);
+            this.HitLogPage.Size = new System.Drawing.Size(775, 302);
             this.HitLogPage.TabIndex = 3;
             this.HitLogPage.Text = "HitLog";
             this.HitLogPage.UseVisualStyleBackColor = true;
+            // 
+            // dataHitLogsGridView
+            // 
+            this.dataHitLogsGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataHitLogsGridView.Location = new System.Drawing.Point(17, 19);
+            this.dataHitLogsGridView.Name = "dataHitLogsGridView";
+            this.dataHitLogsGridView.Size = new System.Drawing.Size(543, 264);
+            this.dataHitLogsGridView.TabIndex = 0;
+            // 
+            // showBtn
+            // 
+            this.showBtn.Location = new System.Drawing.Point(633, 134);
+            this.showBtn.Name = "showBtn";
+            this.showBtn.Size = new System.Drawing.Size(75, 23);
+            this.showBtn.TabIndex = 1;
+            this.showBtn.Text = "Show";
+            this.showBtn.UseVisualStyleBackColor = true;
+            this.showBtn.Click += new System.EventHandler(this.showBtn_Click);
             // 
             // RatingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(812, 368);
+            this.ClientSize = new System.Drawing.Size(805, 355);
             this.Controls.Add(this.CombatControl);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "RatingForm";
             this.Text = "RatingForm";
             this.CombatControl.ResumeLayout(false);
@@ -288,6 +311,8 @@
             this.TransactionsPanel.ResumeLayout(false);
             this.TransactionsPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataTransactionsGridView)).EndInit();
+            this.HitLogPage.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataHitLogsGridView)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -313,5 +338,7 @@
         private System.Windows.Forms.RadioButton transactionsTopSumRdBtn;
         private System.Windows.Forms.DataGridView dataTransactionsGridView;
         private System.Windows.Forms.TabPage HitLogPage;
+        private System.Windows.Forms.DataGridView dataHitLogsGridView;
+        private System.Windows.Forms.Button showBtn;
     }
 }

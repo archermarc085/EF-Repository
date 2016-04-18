@@ -20,19 +20,7 @@ namespace WinFormsNoDevExp
             InitializeComponent();
         }
 
-        private void hitLogsBindingNavigatorSaveItem_Click(object sender, EventArgs e)
-        {
-            this.Validate();
-            this.hitLogsBindingSource.EndEdit();
-            this.tableAdapterManager.UpdateAll(this.combatDbDataSet);
-
-        }
-
-        private void RatingForm_Load(object sender, EventArgs e)
-        {
-            // TODO: This line of code loads data into the 'combatDbDataSet.HitLogs' table. You can move, or remove it, as needed.
-            this.hitLogsTableAdapter.Fill(this.combatDbDataSet.HitLogs);
-        }
+       
 
         private void playersValidEmailRdBtn_CheckedChanged(object sender, EventArgs e)
         {

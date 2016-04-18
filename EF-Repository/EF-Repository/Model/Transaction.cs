@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace EF_Repository.Model
 {
-    class Transcation
+ public  class Transaction
     {
         [Key]
         public int TransactId { get; set; }
