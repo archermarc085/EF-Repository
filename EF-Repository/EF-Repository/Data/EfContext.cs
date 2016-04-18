@@ -21,9 +21,11 @@ namespace EF_Repository.Data
         public virtual DbSet<Pvp> Pvps { get; set; }
         public virtual DbSet<HitLog> HitLogs { get; set; }
         public virtual DbSet<Transaction> Transactions { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-        modelBuilder.Entity<Pve>().HasRequired(c => c.Player).WithMany().WillCascadeOnDelete(false);
+            modelBuilder.Entity<Pve>().HasRequired(c => c.Player).WithMany().WillCascadeOnDelete(false);
+            //base.OnModelCreating(modelBuilder);
         }
     }
 }
